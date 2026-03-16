@@ -47,7 +47,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold text-[#1a2744]">
-              Making Music Around The World
+              About Us
             </h2>
             <p className="mt-6 text-lg text-gray-600">
               Established in 2012, Planetary Music is a premier, full-service
