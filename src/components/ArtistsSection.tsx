@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import type { Artist } from "@/lib/artists";
+import BookArtistModal from "./BookArtistModal";
 
 type ArtistsSectionProps = {
   artists: Artist[];
@@ -15,6 +16,8 @@ export default function ArtistsSection({
   selectedTag,
   onTagSelect,
 }: ArtistsSectionProps) {
+  const [bookingArtist, setBookingArtist] = useState<Artist | null>(null);
+
   const filteredArtists = useMemo(() => {
     if (!selectedTag) return artists;
     return artists.filter((a) =>
@@ -84,6 +87,13 @@ export default function ArtistsSection({
                   </div>
                   <p className="mt-6 text-gray-600">{artist.description}</p>
                   <div className="mt-8 flex flex-wrap gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setBookingArtist(artist)}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#d4a84b] px-5 py-2.5 text-sm font-medium text-[#1a2744] transition hover:bg-[#e5b95c]"
+                    >
+                      Book Artist
+                    </button>
                     {artist.website && (
                       <a
                         href={artist.website}
@@ -148,6 +158,14 @@ export default function ArtistsSection({
             </div>
           </div>
         </section>
+      )}
+
+      {bookingArtist && (
+        <BookArtistModal
+          artistName={bookingArtist.name}
+          isOpen={!!bookingArtist}
+          onClose={() => setBookingArtist(null)}
+        />
       )}
     </section>
   );
