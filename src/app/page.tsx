@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import EmailSignup from "@/components/EmailSignup";
+import ServicesCards from "@/components/ServicesCards";
 
 export default function Home() {
   return (
@@ -26,61 +27,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="bg-gray-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-[#1a2744]">
-            Our Entertainment Portfolio
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
-            We understand that a truly memorable occasion requires a
-            multi-dimensional approach. We offer a comprehensive suite of
-            entertainment services designed to elevate your event and engage
-            your guests:
-          </p>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="text-2xl">🎸</div>
-              <h3 className="mt-4 font-semibold text-[#1a2744]">
-                Exceptional Live Bands
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">
-                From live jazz and Top 40 hits to classic rock and country, our
-                curated roster features the finest musicians in the region.
-              </p>
-            </div>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="text-2xl">🎧</div>
-              <h3 className="mt-4 font-semibold text-[#1a2744]">
-                Professional DJ Services
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">
-                Expertly mixed, tailored playlists guaranteed to set the perfect
-                mood and keep the dance floor full.
-              </p>
-            </div>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="text-2xl">🎤</div>
-              <h3 className="mt-4 font-semibold text-[#1a2744]">
-                Interactive Event Experiences
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">
-                Engaging, professionally hosted karaoke and trivia nights
-                designed to entertain audiences of all types.
-              </p>
-            </div>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="text-2xl">✨</div>
-              <h3 className="mt-4 font-semibold text-[#1a2744]">
-                Bespoke Performances
-              </h3>
-              <p className="mt-2 text-sm text-gray-600">
-                Customized entertainment solutions crafted specifically to
-                align with your unique vision and event requirements.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServicesCards />
 
       {/* Websites & Marketing */}
       <section className="py-20">
