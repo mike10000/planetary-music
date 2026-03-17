@@ -2,6 +2,7 @@ import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import EmailSignup from "@/components/EmailSignup";
 import ServicesCards from "@/components/ServicesCards";
+import WebsitesMarketingSection from "@/components/WebsitesMarketingSection";
 
 export default function Home() {
   return (
@@ -30,56 +31,7 @@ export default function Home() {
       <ServicesCards />
 
       {/* Websites & Marketing */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-2xl bg-[#1a2744]">
-            <div className="grid gap-12 lg:grid-cols-2">
-              <div className="flex flex-col justify-center p-12 text-white">
-                <span className="text-2xl">🌐</span>
-                <h2 className="mt-4 text-3xl font-bold">
-                  Websites &amp; Marketing for Artists
-                </h2>
-                <p className="mt-6 text-lg text-white/90">
-                  Your band deserves a professional online presence. We build
-                  custom websites and create marketing strategies that help you
-                  reach more fans, book more gigs, and grow your career.
-                </p>
-                <ul className="mt-8 space-y-3 text-white/90">
-                  <li className="flex gap-2">
-                    <span className="text-[#d4a84b]">•</span>
-                    Custom-designed band websites
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#d4a84b]">•</span>
-                    Tour dates, music players &amp; booking integration
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#d4a84b]">•</span>
-                    Social media strategy &amp; content planning
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-[#d4a84b]">•</span>
-                    Press kits &amp; promotional materials
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white/5 p-12 lg:p-16">
-                <div className="flex flex-col items-center justify-center text-center">
-                  <p className="text-lg font-medium text-white">
-                    Ready to build your online presence?
-                  </p>
-                  <Link
-                    href="/services/websites-marketing"
-                    className="mt-6 rounded-full border-2 border-white px-8 py-3 font-semibold text-white transition hover:bg-white/10"
-                  >
-                    Submit a request
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WebsitesMarketingSection />
 
       {/* Email Signup */}
       <section className="bg-[#1a2744] py-20 text-white">
