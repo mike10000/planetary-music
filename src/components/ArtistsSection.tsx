@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import type { Artist } from "@/lib/artists";
 import BookArtistModal from "./BookArtistModal";
+import VideoModal from "./VideoModal";
 
 type ArtistsSectionProps = {
   artists: Artist[];
@@ -17,6 +18,7 @@ export default function ArtistsSection({
   onTagSelect,
 }: ArtistsSectionProps) {
   const [bookingArtist, setBookingArtist] = useState<Artist | null>(null);
+  const [videoArtist, setVideoArtist] = useState<Artist | null>(null);
 
   const filteredArtists = useMemo(() => {
     if (!selectedTag) return artists;
@@ -105,14 +107,13 @@ export default function ArtistsSection({
                       </a>
                     )}
                     {artist.videoUrl && (
-                      <a
-                        href={artist.videoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border-2 border-[#1a2744] px-5 py-2.5 text-sm font-medium text-[#1a2744] transition hover:bg-[#1a2744]/5"
+                      <button
+                        type="button"
+                        onClick={() => setVideoArtist(artist)}
+                        className="inline-flex items-center gap-2 rounded-full border-2 border-[#d4a84b] bg-[#d4a84b]/10 px-5 py-2.5 text-sm font-medium text-[#1a2744] transition hover:bg-[#d4a84b]/20 hover:scale-105 hover:shadow-lg hover:shadow-[#d4a84b]/20"
                       >
                         Watch Video
-                      </a>
+                      </button>
                     )}
                   </div>
                 </div>
@@ -165,6 +166,15 @@ export default function ArtistsSection({
           artistName={bookingArtist.name}
           isOpen={!!bookingArtist}
           onClose={() => setBookingArtist(null)}
+        />
+      )}
+
+      {videoArtist?.videoUrl && (
+        <VideoModal
+          artistName={videoArtist.name}
+          videoUrl={videoArtist.videoUrl}
+          isOpen={!!videoArtist}
+          onClose={() => setVideoArtist(null)}
         />
       )}
     </section>
