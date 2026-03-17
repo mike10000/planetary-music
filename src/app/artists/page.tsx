@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { artists } from "@/data/artists";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Our Artists | Planetary Music",
@@ -11,15 +12,11 @@ export const metadata = {
 export default function ArtistsPage() {
   return (
     <main>
-      <section className="bg-[#1a2744] py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold">Our Artists</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/90">
-            Discover our curated roster of top-tier live talent. Each artist
-            brings exceptional skill and stage presence to elevate your event.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Our Artists"
+        description="Discover our curated roster of top-tier live talent. Each artist brings exceptional skill and stage presence to elevate your event."
+        tags={["Jazz", "Rock", "Country", "Top 40"]}
+      />
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

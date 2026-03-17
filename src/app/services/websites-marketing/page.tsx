@@ -1,5 +1,6 @@
 import Link from "next/link";
 import WebsiteMarketingForm from "@/components/WebsiteMarketingForm";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata = {
   title: "Websites & Marketing for Artists | Planetary Music",
@@ -10,16 +11,11 @@ export const metadata = {
 export default function WebsitesMarketingPage() {
   return (
     <main>
-      <section className="bg-[#1a2744] py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold">Websites &amp; Marketing for Artists</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/90">
-            Your band deserves a professional online presence. We build custom
-            websites and create marketing strategies that help you reach more
-            fans, book more gigs, and grow your career.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Websites & Marketing for Artists"
+        description="Your band deserves a professional online presence. We build custom websites and create marketing strategies that help you reach more fans, book more gigs, and grow your career."
+        tags={["Websites", "Social Media", "Press Kits"]}
+      />
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
