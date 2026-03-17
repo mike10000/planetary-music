@@ -19,8 +19,8 @@ export default function HeroSection() {
       const scrollY = window.scrollY;
       if (!videoRef.current) return;
 
-      // Parallax: video moves slower than scroll (lags behind for depth)
-      const parallaxY = scrollY * 0.65;
+      // Parallax: video moves with scroll (higher = more visible movement)
+      const parallaxY = scrollY * 0.9;
       videoRef.current.style.transform = `translate3d(0, calc(-10% + ${parallaxY}px), 0)`;
     };
 

@@ -1,15 +1,61 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-const GOOGLE_APPS_SCRIPT_URL = process.env.GOOGLE_APPS_SCRIPT_URL;
+const TO_EMAIL = "info@miketintnerproductions.com";
+
+function buildEmailBody(data: Record<string, unknown>): string {
+  const get = (key: string) => (data[key] || "").toString().trim();
+  const getArray = (key: string) => {
+    const val = data[key];
+    if (Array.isArray(val)) return val.join(", ");
+    return (val || "").toString().trim();
+  };
+
+  return [
+    "=== NEW WEBSITE & MARKETING INQUIRY ===",
+    "",
+    "--- CONTACT ---",
+    `Name: ${get("personName")}`,
+    `Email: ${get("personEmailWork")}`,
+    `Phone: ${get("personPhoneWork")}`,
+    "",
+    "--- BAND INFO ---",
+    `Band/Artist: ${get("bandName")}`,
+    `Genres: ${get("genres")}`,
+    `Year Formed: ${get("yearFormed")}`,
+    `Location: ${get("location")}`,
+    `Members: ${get("memberCount")}`,
+    `Band Bio: ${get("bandBio")}`,
+    "",
+    "--- ONLINE PRESENCE ---",
+    `Website: ${get("existingWebsite") || "None"}`,
+    `Facebook: ${get("facebook")}`,
+    `Instagram: ${get("instagram")}`,
+    `Spotify: ${get("spotify")}`,
+    `YouTube: ${get("youtube")}`,
+    "",
+    "--- REQUIREMENTS ---",
+    `Preferred Domain: ${get("preferredDomain")}`,
+    `Desired Features: ${getArray("desiredFeatures")}`,
+    `Timeline: ${get("timeline")}`,
+    `Budget: ${get("budgetRange")}`,
+    "",
+    "--- ADDITIONAL NOTES ---",
+    get("additionalNotes") || "(none)",
+  ].join("\n");
+}
 
 export async function POST(request: NextRequest) {
-  if (!GOOGLE_APPS_SCRIPT_URL) {
-    console.error("GOOGLE_APPS_SCRIPT_URL is not configured");
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailUser || !gmailAppPassword) {
+    console.error("GMAIL_USER and GMAIL_APP_PASSWORD must be configured");
     return NextResponse.json(
       {
         success: false,
         errors: [
-          "Form submission is not configured. Please add GOOGLE_APPS_SCRIPT_URL to your environment.",
+          "Form submission is not configured. Add GMAIL_USER and GMAIL_APP_PASSWORD to your environment.",
         ],
       },
       { status: 500 }
@@ -26,32 +72,34 @@ export async function POST(request: NextRequest) {
       const formData = await request.formData();
       data = Object.fromEntries(formData.entries());
 
-      // Handle checkbox arrays (desiredFeatures)
       const desiredFeatures = formData.getAll("desiredFeatures") as string[];
       if (desiredFeatures.length > 0) {
         data.desiredFeatures = desiredFeatures.filter(Boolean);
       }
     }
 
-    // GAS often fails with application/json - use text/plain so e.postData.contents is populated
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8",
+    const subject = `New Website & Marketing Request: ${(data.bandName || data.companyName || "Unknown")}`;
+    const body = buildEmailBody(data);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
       },
-      body: JSON.stringify(data),
     });
 
-    const result = await response.json();
+    await transporter.sendMail({
+      from: `"Planetary Music" <${gmailUser}>`,
+      to: TO_EMAIL,
+      subject,
+      text: body,
+    });
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { success: false, errors: result.errors || ["Submission failed"] },
-        { status: response.status }
-      );
-    }
-
-    return NextResponse.json(result);
+    return NextResponse.json({
+      success: true,
+      message: "Thank you! We've received your website & marketing inquiry.",
+    });
   } catch (error) {
     console.error("Website marketing form submission error:", error);
     return NextResponse.json(
