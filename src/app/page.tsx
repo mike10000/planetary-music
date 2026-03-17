@@ -1,46 +1,10 @@
 import Link from "next/link";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <main>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-[#1a2744] py-24 text-white">
-        <div className="absolute inset-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover opacity-25"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            Making Music Around The World
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90">
-            Premier full-service booking and entertainment agency. Your vision.
-            Our talent. Beyond the band, we deliver a total entertainment
-            experience.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact?type=venue"
-              className="w-full rounded-full bg-[#d4a84b] px-8 py-4 text-center font-semibold text-[#1a2744] transition hover:bg-[#e5b95c] sm:w-auto"
-            >
-              Book for Your Venue
-            </Link>
-            <Link
-              href="/contact?type=musician"
-              className="w-full rounded-full border-2 border-white px-8 py-4 text-center font-semibold text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Join as a Musician
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* About */}
       <section className="py-20">

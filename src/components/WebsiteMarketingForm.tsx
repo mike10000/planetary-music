@@ -14,63 +14,44 @@ export default function WebsiteMarketingForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // Build comprehensive personNote with all website/marketing form data
-    const data: Record<string, string> = {};
-    const sections: string[] = [];
+    const desiredFeatures = (formData.getAll("desiredFeatures") as string[]).filter(Boolean);
+    const desiredFeaturesText = (formData.get("desiredFeaturesText") as string)?.trim() || "";
 
-    sections.push("=== WEBSITE & MARKETING INQUIRY ===");
-    sections.push("");
-    sections.push("--- BAND INFO ---");
-    sections.push(`Band/Artist Name: ${formData.get("bandName") || ""}`);
-    sections.push(`Genres/Style: ${formData.get("genres") || ""}`);
-    sections.push(`Year Formed: ${formData.get("yearFormed") || ""}`);
-    sections.push(`Location: ${formData.get("location") || ""}`);
-    sections.push(`Number of Members: ${formData.get("memberCount") || ""}`);
-    sections.push(`Band Bio: ${formData.get("bandBio") || ""}`);
-    sections.push("");
-    sections.push("--- BAND MEMBERS ---");
-    sections.push(`Members & Roles: ${formData.get("bandMembers") || ""}`);
-    sections.push("");
-    sections.push("--- ONLINE PRESENCE ---");
-    sections.push(`Existing Website: ${formData.get("existingWebsite") || "None"}`);
-    sections.push(`Facebook: ${formData.get("facebook") || ""}`);
-    sections.push(`Instagram: ${formData.get("instagram") || ""}`);
-    sections.push(`Spotify: ${formData.get("spotify") || ""}`);
-    sections.push(`YouTube: ${formData.get("youtube") || ""}`);
-    sections.push(`Other Links: ${formData.get("otherLinks") || ""}`);
-    sections.push("");
-    sections.push("--- ASSETS & MEDIA ---");
-    sections.push(`Logo/Assets: ${formData.get("logoAssets") || ""}`);
-    sections.push(`Photos: ${formData.get("photos") || ""}`);
-    sections.push(`Video Links: ${formData.get("videoLinks") || ""}`);
-    sections.push(`Music Samples: ${formData.get("musicSamples") || ""}`);
-    sections.push(`Press/Reviews: ${formData.get("pressReviews") || ""}`);
-    sections.push("");
-    sections.push("--- WEBSITE REQUIREMENTS ---");
-    sections.push(`Preferred Domain: ${formData.get("preferredDomain") || ""}`);
-    const features = (formData.getAll("desiredFeatures") as string[]).filter(Boolean);
-    const featuresText = (formData.get("desiredFeaturesText") as string)?.trim() || "";
-    const allFeatures = [...features, ...(featuresText ? [featuresText] : [])].join(", ") || "Not specified";
-    sections.push(`Desired Features: ${allFeatures}`);
-    sections.push(`Timeline/Launch Date: ${formData.get("timeline") || ""}`);
-    sections.push(`Budget Range: ${formData.get("budgetRange") || ""}`);
-    sections.push(`Additional Notes: ${formData.get("additionalNotes") || ""}`);
-
-    const fullNote = sections.join("\n");
-
-    // Build FormData for API - use standard Overture fields + personNote
-    const submitData = new FormData();
-    submitData.set("personName", (formData.get("personName") as string) || "");
-    submitData.set("personEmailWork", (formData.get("personEmailWork") as string) || "");
-    submitData.set("personPhoneWork", (formData.get("personPhoneWork") as string) || "");
-    submitData.set("companyName", (formData.get("bandName") as string) || "");
-    submitData.set("personWebsiteWork", (formData.get("existingWebsite") as string) || "");
-    submitData.set("personNote", fullNote);
+    const submitData: Record<string, string | string[]> = {
+      personName: (formData.get("personName") as string) || "",
+      personEmailWork: (formData.get("personEmailWork") as string) || "",
+      personPhoneWork: (formData.get("personPhoneWork") as string) || "",
+      bandName: (formData.get("bandName") as string) || "",
+      genres: (formData.get("genres") as string) || "",
+      yearFormed: (formData.get("yearFormed") as string) || "",
+      location: (formData.get("location") as string) || "",
+      memberCount: (formData.get("memberCount") as string) || "",
+      bandMembers: (formData.get("bandMembers") as string) || "",
+      bandBio: (formData.get("bandBio") as string) || "",
+      existingWebsite: (formData.get("existingWebsite") as string) || "",
+      facebook: (formData.get("facebook") as string) || "",
+      instagram: (formData.get("instagram") as string) || "",
+      spotify: (formData.get("spotify") as string) || "",
+      youtube: (formData.get("youtube") as string) || "",
+      otherLinks: (formData.get("otherLinks") as string) || "",
+      logoAssets: (formData.get("logoAssets") as string) || "",
+      photos: (formData.get("photos") as string) || "",
+      videoLinks: (formData.get("videoLinks") as string) || "",
+      musicSamples: (formData.get("musicSamples") as string) || "",
+      pressReviews: (formData.get("pressReviews") as string) || "",
+      preferredDomain: (formData.get("preferredDomain") as string) || "",
+      desiredFeatures: desiredFeatures,
+      desiredFeaturesText,
+      timeline: (formData.get("timeline") as string) || "",
+      budgetRange: (formData.get("budgetRange") as string) || "",
+      additionalNotes: (formData.get("additionalNotes") as string) || "",
+    };
 
     try {
-      const res = await fetch("/api/overture", {
+      const res = await fetch("/api/website-marketing", {
         method: "POST",
-        body: submitData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submitData),
       });
       const result = await res.json();
 
