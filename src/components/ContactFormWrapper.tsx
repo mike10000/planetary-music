@@ -21,7 +21,7 @@ export default function ContactFormWrapper() {
         {type === "venue"
           ? "Tell us about your event and we'll match you with the perfect talent."
           : type === "musician"
-            ? "Enter your email and we'll be in touch."
+            ? "Fill out the form to sign up for our roster. You can also call (703) 980-0379 or email Dave@planetarymusic.com."
             : "Send us a message and we'll get back to you shortly."}
       </p>
       <div className="mt-6">

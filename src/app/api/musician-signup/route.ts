@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { email } = await request.json();
+    const { name, email, phone, message } = await request.json();
 
     if (!email || typeof email !== "string" || !email.trim()) {
       return NextResponse.json(
@@ -32,11 +32,24 @@ export async function POST(request: NextRequest) {
       auth: { user: gmailUser, pass: gmailAppPassword },
     });
 
+    const nameStr = name && typeof name === "string" ? name.trim() : "";
+    const phoneStr = phone && typeof phone === "string" ? phone.trim() : "";
+    const messageStr = message && typeof message === "string" ? message.trim() : "";
+
+    const body = [
+      `Name: ${nameStr || "(not provided)"}`,
+      `Email: ${email.trim()}`,
+      `Phone: ${phoneStr || "(not provided)"}`,
+      "",
+      "Message:",
+      messageStr || "(not provided)",
+    ].join("\n");
+
     await transporter.sendMail({
       from: `"Planetary Music" <${gmailUser}>`,
       to: TO_EMAIL,
       subject: "Musician Signup",
-      text: `New musician signup:\n\nEmail: ${email.trim()}`,
+      text: `New musician signup:\n\n${body}`,
     });
 
     return NextResponse.json({
