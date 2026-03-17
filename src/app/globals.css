@@ -22,22 +22,23 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Hero title effects */
+/* Hero title effects - subtle, arty serif */
 .hero-title {
-  text-shadow: 0 0 40px rgba(212, 168, 75, 0.3),
-    0 0 80px rgba(212, 168, 75, 0.15),
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font-hero), Georgia, serif;
+  font-weight: 400;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.2),
+    0 0 60px rgba(212, 168, 75, 0.1),
+    0 2px 12px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
 }
 
 .hero-word {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 40%, #e8e8e8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
 }
 
 .hero-word-reveal {

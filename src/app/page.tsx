@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
+import EmailSignup from "@/components/EmailSignup";
 
 export default function Home() {
   return (
@@ -133,8 +134,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Email Signup */}
       <section className="bg-[#1a2744] py-20 text-white">
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold">
+            Stay in the loop
+          </h2>
+          <p className="mt-4 text-lg text-white/90">
+            Sign up to hear about events, promotions, and services.
+          </p>
+          <div className="mt-8">
+            <EmailSignup />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-[#d4a84b]/20 bg-[#1a2744] py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold">
             Whatever your event demands, Planetary Music provides the expertise
@@ -154,12 +170,15 @@ export default function Home() {
               Musicians Sign Up
             </Link>
           </div>
-          <p className="mt-8 text-white/80">
-            Or give us a call:{" "}
-            <a href="tel:+15551234567" className="font-medium hover:text-[#d4a84b]">
-              (555) 123-4567
+          <div className="mt-8">
+            <a
+              href="tel:+17039800379"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/20 hover:border-white"
+            >
+              <span aria-hidden className="text-lg">📞</span>
+              (703) 980-0379
             </a>
-          </p>
+          </div>
         </div>
       </section>
     </main>

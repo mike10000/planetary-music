@@ -61,7 +61,7 @@ export default function HeroSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <h1
-          className={`hero-title text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl ${
+          className={`hero-title text-4xl sm:text-5xl lg:text-7xl xl:text-8xl ${
             mounted ? "" : "opacity-0"
           }`}
         >
@@ -70,7 +70,7 @@ export default function HeroSection() {
           </span>
           <br />
           <span className={`hero-word block ${mounted ? "hero-word-reveal-delay-1" : ""}`}>
-            Around the world
+            Around the World
           </span>
         </h1>
         <p

@@ -32,11 +32,13 @@ export default function ContactPage() {
                 interested in joining our roster, we&apos;re here to help.
               </p>
               <div className="mt-8 space-y-4">
-                <p className="text-lg font-medium text-[#1a2744]">
-                  <a href="tel:+15551234567" className="hover:text-[#d4a84b]">
-                    (555) 123-4567
-                  </a>
-                </p>
+                <a
+                  href="tel:+17039800379"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#d4a84b] px-5 py-3 text-lg font-semibold text-[#1a2744] transition hover:bg-[#e5b95c]"
+                >
+                  <span aria-hidden>📞</span>
+                  (703) 980-0379
+                </a>
                 <p className="text-gray-600">
                   Washington D.C. Metropolitan Area
                 </p>
