@@ -70,3 +70,20 @@ body {
   will-change: transform;
   transform-origin: center top;
 }
+
+/* Nav bar - hero-aligned */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a84b, transparent);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
