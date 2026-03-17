@@ -131,13 +131,13 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay - solid bg to match nav bar, no transparency */}
+      {/* Mobile menu overlay - solid white bg for readability */}
       <div
-        className={`fixed inset-x-0 top-[57px] bottom-0 z-40 bg-[#fefcf8] transition-all duration-300 md:hidden ${
+        className={`fixed inset-x-0 top-[57px] bottom-0 z-40 bg-white transition-all duration-300 md:hidden ${
           mobileMenuOpen ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col gap-1 overflow-y-auto px-4 py-6">
+        <div className="flex flex-col gap-1 overflow-y-auto bg-white px-4 py-6">
           <div className="flex flex-col border-b border-[#2d2318]/10 pb-4">
             <Link
               href="/artists"
