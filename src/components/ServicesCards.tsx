@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ServiceInquiryModal from "./ServiceInquiryModal";
 
 const services = [
   {
@@ -32,6 +33,7 @@ const services = [
 export default function ServicesCards() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -62,9 +64,11 @@ export default function ServicesCards() {
         </p>
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
-            <div
+            <button
               key={service.title}
-              className={`group relative overflow-hidden rounded-xl border border-[#2d2318]/10 bg-white p-6 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#d4a84b]/40 hover:shadow-xl hover:shadow-[#d4a84b]/10 ${
+              type="button"
+              onClick={() => setSelectedService(service)}
+              className={`group relative w-full overflow-hidden rounded-xl border border-[#2d2318]/10 bg-white p-6 text-left shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#d4a84b]/40 hover:shadow-xl hover:shadow-[#d4a84b]/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#d4a84b]/50 focus:ring-offset-2 ${
                 visible ? "animate-card-in opacity-100" : "opacity-0"
               }`}
               style={
@@ -87,9 +91,21 @@ export default function ServicesCards() {
               <p className="mt-2 text-sm leading-relaxed text-gray-600">
                 {service.description}
               </p>
-            </div>
+              <span className="mt-4 inline-block text-sm font-medium text-[#d4a84b] group-hover:underline">
+                Enquire →
+              </span>
+            </button>
           ))}
         </div>
+
+        {selectedService && (
+          <ServiceInquiryModal
+            serviceName={selectedService.title}
+            serviceIcon={selectedService.icon}
+            isOpen={!!selectedService}
+            onClose={() => setSelectedService(null)}
+          />
+        )}
       </div>
     </section>
   );
