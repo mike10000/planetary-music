@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import OvertureForm from "./OvertureForm";
+import MusicianSignupForm from "./MusicianSignupForm";
 
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();
@@ -20,11 +21,15 @@ export default function ContactFormWrapper() {
         {type === "venue"
           ? "Tell us about your event and we'll match you with the perfect talent."
           : type === "musician"
-            ? "Share your music and we'll review your application."
+            ? "Enter your email and we'll be in touch."
             : "Send us a message and we'll get back to you shortly."}
       </p>
       <div className="mt-6">
-        <OvertureForm formType={type} />
+        {type === "musician" ? (
+          <MusicianSignupForm />
+        ) : (
+          <OvertureForm formType={type} />
+        )}
       </div>
     </>
   );

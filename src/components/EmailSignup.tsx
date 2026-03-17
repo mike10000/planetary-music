@@ -14,15 +14,11 @@ export default function EmailSignup() {
     setStatus("submitting");
     setErrorMessage("");
 
-    const formData = new FormData();
-    formData.set("personEmailWork", email.trim());
-    formData.set("personName", "Newsletter Subscriber");
-    formData.set("personNote", "Email signup: Events, promotions, and services");
-
     try {
-      const res = await fetch("/api/overture", {
+      const res = await fetch("/api/email-signup", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
       });
       const data = await res.json();
 

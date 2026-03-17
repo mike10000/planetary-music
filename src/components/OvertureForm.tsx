@@ -20,16 +20,10 @@ export default function OvertureForm({ formType }: OvertureFormProps) {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    if (formType === "venue") {
-      const note = formData.get("personNote") || "";
-      formData.set("booking1Note", `Venue booking inquiry: ${note}`);
-    } else if (formType === "musician") {
-      const note = formData.get("personNote") || "";
-      formData.set("personNote", `Musician signup: ${note}`);
-    }
+    formData.set("formType", formType);
 
     try {
-      const res = await fetch("/api/overture", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         body: formData,
       });
