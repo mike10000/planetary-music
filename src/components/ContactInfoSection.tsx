@@ -124,11 +124,7 @@ export default function ContactInfoSection() {
         </a>
         <a
           href="/contact?type=musician"
-          className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
-            type === "musician"
-              ? "bg-[#1a2744] text-white hover:bg-[#2a3a5c]"
-              : "border-2 border-[#1a2744] text-[#1a2744] hover:bg-[#1a2744]/5"
-          }`}
+          className="rounded-full border-2 border-[#1a2744] px-5 py-2.5 text-sm font-medium text-[#1a2744] transition hover:bg-[#1a2744]/5"
         >
           I&apos;m a Musician
         </a>
