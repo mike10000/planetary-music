@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-
-const TO_EMAIL = "info@miketintnerproductions.com";
+import { getRecipientEmails } from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -91,7 +90,7 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail({
       from: `"Planetary Music" <${gmailUser}>`,
-      to: TO_EMAIL,
+      to: getRecipientEmails(),
       subject,
       text: body,
     });

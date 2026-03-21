@@ -1,5 +1,6 @@
 import PageHeader from "@/components/PageHeader";
-import Link from "next/link";
+import BookingFormSection from "@/components/BookingFormSection";
+import VenueContactInfo from "@/components/VenueContactInfo";
 
 export const metadata = {
   title: "Karaoke & Trivia | Planetary Music",
@@ -13,18 +14,14 @@ export default function KaraokeTriviaPage() {
       <PageHeader
         title="Karaoke & Trivia"
         description="Bring the fun to your venue with our karaoke and trivia services. Perfect for bars, restaurants, corporate events, and private parties."
+        tags={["Bars", "Restaurants", "Corporate Events", "Private Parties"]}
       />
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="max-w-2xl text-lg text-gray-600">
-            Our karaoke and trivia hosts create engaging, interactive experiences that keep guests entertained and coming back. From weekly trivia nights to karaoke parties, we have the talent to elevate your event.
-          </p>
-          <Link
-            href="/contact?type=venue"
-            className="mt-8 inline-flex rounded-full bg-[#d4a84b] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#e5b95c]"
-          >
-            Book Karaoke or Trivia
-          </Link>
+          <div className="grid gap-12 lg:grid-cols-2">
+            <VenueContactInfo />
+            <BookingFormSection formType="karaoke" />
+          </div>
         </div>
       </section>
     </main>

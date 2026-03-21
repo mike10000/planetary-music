@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type FormType = "general" | "venue" | "musician";
+type FormType = "general" | "venue" | "musician" | "dj" | "karaoke";
 
 interface OvertureFormProps {
   formType: FormType;
@@ -55,7 +55,7 @@ export default function OvertureForm({ formType }: OvertureFormProps) {
     );
   }
 
-  const isVenue = formType === "venue";
+  const isVenue = formType === "venue" || formType === "dj" || formType === "karaoke";
   const isMusician = formType === "musician";
 
   return (

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-
-const TO_EMAIL = "info@miketintnerproductions.com";
+import { getRecipientEmails } from "@/lib/email-config";
 
 export async function POST(request: NextRequest) {
   const gmailUser = process.env.GMAIL_USER;
@@ -40,7 +39,8 @@ export async function POST(request: NextRequest) {
     const text = [
       "=== ARTIST BOOKING REQUEST ===",
       "",
-      `Artist requested: ${artistName || "(not specified)"}`,
+      ">>> ARTIST SELECTED: " + (artistName || "(not specified)") + " <<<",
+      "",
       "",
       "--- CONTACT ---",
       `Name: ${name}`,
@@ -62,8 +62,8 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail({
       from: `"Planetary Music" <${gmailUser}>`,
-      to: TO_EMAIL,
-      subject: `Planetary Music: Booking request for ${artistName || "Artist"} from ${name}`,
+      to: getRecipientEmails(),
+      subject: `Planetary Music: Book ${artistName || "Artist"} – Request from ${name}`,
       text,
     });
 

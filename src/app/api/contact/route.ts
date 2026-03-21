@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-
-const TO_EMAIL = "info@miketintnerproductions.com";
+import { getRecipientEmails } from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>, formType: string): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -16,9 +15,10 @@ function buildEmailBody(data: Record<string, unknown>, formType: string): string
     "",
   ];
 
-  if (formType === "venue") {
+  const isVenueType = ["venue", "dj", "karaoke"].includes(formType);
+  if (isVenueType) {
     lines.push(
-      "--- VENUE INFO ---",
+      "--- EVENT INFO ---",
       `Venue/Company: ${get("companyName")}`,
       `Event Date: ${get("booking1Date")}`,
       `Venue/Location: ${get("booking1VenueName")}`,
@@ -50,7 +50,12 @@ export async function POST(request: NextRequest) {
     const formType = (formData.get("formType") as string) || "general";
     const data = Object.fromEntries(formData.entries());
 
-    const subject = `Planetary Music: ${formType === "venue" ? "Venue Booking" : "Contact"} from ${(data.personName || "").toString().trim() || "Unknown"}`;
+    const subjectMap: Record<string, string> = {
+      venue: "Venue Booking",
+      dj: "DJ Booking",
+      karaoke: "Karaoke/Trivia Booking",
+    };
+    const subject = `Planetary Music: ${subjectMap[formType] || "Contact"} from ${(data.personName || "").toString().trim() || "Unknown"}`;
     const body = buildEmailBody(data, formType);
 
     const transporter = nodemailer.createTransport({
@@ -60,7 +65,7 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail({
       from: `"Planetary Music" <${gmailUser}>`,
-      to: TO_EMAIL,
+      to: getRecipientEmails(),
       subject,
       text: body,
     });
