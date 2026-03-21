@@ -25,6 +25,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/djs" className="text-sm text-white/80 hover:text-[#d4a84b]">
+                  DJs
+                </Link>
+              </li>
+              <li>
+                <Link href="/karaoke-trivia" className="text-sm text-white/80 hover:text-[#d4a84b]">
+                  Karaoke & Trivia
+                </Link>
+              </li>
+              <li>
                 <Link href="/services/websites-marketing" className="text-sm text-white/80 hover:text-[#d4a84b]">
                   Websites &amp; Marketing
                 </Link>
@@ -54,6 +64,12 @@ export default function Footer() {
             >
               <span aria-hidden>📞</span>
               (703) 980-0379
+            </a>
+            <a
+              href="mailto:Dave@PlanetaryMusic.com"
+              className="mt-2 inline-flex items-center gap-2 text-sm text-white/80 hover:text-[#d4a84b]"
+            >
+              Dave@PlanetaryMusic.com
             </a>
             <p className="mt-2 text-sm text-white/80">
               Washington D.C. Metropolitan Area

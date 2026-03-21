@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -31,33 +30,37 @@ export default function Header() {
   const scrolled = scrollY > 60;
 
   const navLinkClass =
-    "relative text-sm font-extrabold tracking-wide transition-colors duration-200 nav-link";
+    "relative whitespace-nowrap font-extrabold tracking-wide transition-colors duration-200 nav-link text-[clamp(0.7rem,1.4vw,0.875rem)]";
 
   const navLinks = (
     <>
-      <Link href="/artists" className={`${navLinkClass} px-3 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
-        Artists
+      <Link href="/artists" className={`${navLinkClass} px-2 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
+        Our Artists
       </Link>
-      <Link href="/services/websites-marketing" className={`${navLinkClass} px-3 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
+      <Link href="/djs" className={`${navLinkClass} px-2 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
+        DJs
+      </Link>
+      <Link href="/karaoke-trivia" className={`${navLinkClass} px-2 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
+        Karaoke & Trivia
+      </Link>
+      <Link href="/services/websites-marketing" className={`${navLinkClass} px-2 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
         Websites &amp; Marketing
-      </Link>
-      <Link href="/contact" className={`${navLinkClass} px-3 py-2 rounded-lg text-[#2d2318] hover:text-[#d4a84b]`}>
-        Contact
       </Link>
     </>
   );
 
+  const ctaButtonClass = "whitespace-nowrap rounded-full font-extrabold py-2 text-[clamp(0.7rem,1.4vw,0.875rem)] transition-all duration-200";
   const ctaButtons = (
     <>
-      <Link href="/contact?type=venue" className="rounded-full bg-[#d4a84b] px-4 py-2 text-sm font-extrabold text-[#1a2744] shadow-lg shadow-[#d4a84b]/20 transition-all duration-200 hover:bg-[#e5b95c] hover:shadow-[#d4a84b]/30 hover:scale-[1.02]">
-        Venues
+      <Link href="/contact?type=venue" className={`${ctaButtonClass} bg-[#d4a84b] px-3 text-[#1a2744] shadow-lg shadow-[#d4a84b]/20 hover:bg-[#e5b95c] hover:shadow-[#d4a84b]/30 hover:scale-[1.02]`}>
+        For Venues
       </Link>
-      <Link href="/contact?type=musician" className="rounded-full border-2 border-[#2d2318] px-4 py-2 text-sm font-extrabold text-[#2d2318] transition-all duration-200 hover:bg-[#2d2318]/5">
-        Musicians
+      <Link href="/contact?type=musician" className={`${ctaButtonClass} border-2 border-[#2d2318] px-3 text-[#2d2318] hover:bg-[#2d2318]/5`}>
+        For Musicians
       </Link>
       <a
         href="tel:+17039800379"
-        className="flex items-center gap-1.5 rounded-full border-2 border-[#2d2318] px-3 py-2 text-sm font-extrabold text-[#2d2318] transition-all duration-200 hover:bg-[#2d2318]/5 sm:px-4"
+        className="flex items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-[#2d2318] px-2.5 py-2 text-[clamp(0.7rem,1.4vw,0.875rem)] font-extrabold text-[#2d2318] transition-all duration-200 hover:bg-[#2d2318]/5 sm:px-3"
         aria-label="Call (703) 980-0379"
       >
         <svg
@@ -93,20 +96,21 @@ export default function Header() {
           className="flex items-center gap-2 transition-opacity hover:opacity-90"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/logo.png"
             alt="Planetary Music"
-            width={120}
-            height={48}
+            width={180}
+            height={56}
             className="h-9 w-auto object-contain sm:h-10"
-            priority
+            style={{ background: "transparent" }}
           />
         </Link>
 
         {/* Desktop nav - hidden on mobile */}
-        <div className="hidden md:flex md:items-center md:gap-1 md:gap-8">
+        <div className="hidden md:flex md:items-center md:gap-2 lg:gap-3">
           {navLinks}
-          <div className="ml-2 flex items-center gap-2 sm:gap-3">
+          <div className="ml-1 flex items-center gap-1.5 sm:gap-2">
             {ctaButtons}
           </div>
         </div>
@@ -144,7 +148,21 @@ export default function Header() {
               className="py-3 text-base font-extrabold text-[#2d2318] hover:text-[#d4a84b]"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Artists
+              Our Artists
+            </Link>
+            <Link
+              href="/djs"
+              className="py-3 text-base font-extrabold text-[#2d2318] hover:text-[#d4a84b]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              DJs
+            </Link>
+            <Link
+              href="/karaoke-trivia"
+              className="py-3 text-base font-extrabold text-[#2d2318] hover:text-[#d4a84b]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Karaoke & Trivia
             </Link>
             <Link
               href="/services/websites-marketing"
@@ -153,13 +171,6 @@ export default function Header() {
             >
               Websites &amp; Marketing
             </Link>
-            <Link
-              href="/contact"
-              className="py-3 text-base font-extrabold text-[#2d2318] hover:text-[#d4a84b]"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
           </div>
           <div className="flex flex-col gap-2 pt-4">
             <Link
@@ -167,14 +178,14 @@ export default function Header() {
               className="rounded-full bg-[#d4a84b] px-4 py-3 text-center text-sm font-extrabold text-[#1a2744]"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Venues
+              For Venues
             </Link>
             <Link
               href="/contact?type=musician"
               className="rounded-full border-2 border-[#2d2318] px-4 py-3 text-center text-sm font-extrabold text-[#2d2318]"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Musicians
+              For Musicians
             </Link>
             <a
               href="tel:+17039800379"

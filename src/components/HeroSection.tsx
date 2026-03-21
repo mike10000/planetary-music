@@ -60,8 +60,24 @@ export default function HeroSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <div
+          className={`mx-auto max-w-2xl transition-all duration-700 [&_img]:mix-blend-lighten ${
+            mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          }`}
+          style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.35))" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero-logo.png"
+            alt="Planetary Music"
+            width={640}
+            height={200}
+            className="h-auto w-full object-contain"
+            style={{ background: "transparent" }}
+          />
+        </div>
         <h1
-          className={`hero-title text-4xl sm:text-5xl lg:text-7xl xl:text-8xl ${
+          className={`hero-title mt-6 text-4xl sm:text-5xl lg:text-7xl xl:text-8xl ${
             mounted ? "" : "opacity-0"
           }`}
         >
