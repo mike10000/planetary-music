@@ -16,13 +16,40 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-[#1a2744]">
               About Us
             </h2>
-            <p className="mt-6 text-lg text-gray-600">
-              Established in 2012, Planetary Music is a premier, full-service
-              booking and entertainment agency. Rooted in the Washington D.C.
-              metropolitan area with a footprint spanning the East Coast, we
-              specialize in sourcing and providing top-tier live talent for
-              events of all scales and styles.
+            <p className="mt-4 text-xl font-semibold text-[#d4a84b]">
+              Your Total Entertainment Solution
             </p>
+            <p className="mt-6 text-lg text-gray-600">
+              At Planetary Music, we believe entertainment should be seamless
+              and spectacular. Serving the D.C. area and the East Coast since
+              2012, we are more than just a booking agency; we are your
+              full-service entertainment partners.
+            </p>
+            <p className="mt-6 text-lg text-gray-600">
+              We pride ourselves on a &quot;limitless&quot; approach to genres
+              and formats. Looking for a specific vibe? We book everything from
+              reggae and blues to the latest chart-toppers. Need more than just
+              music? We provide a full suite of interactive entertainment,
+              including:
+            </p>
+            <ul className="mt-6 space-y-3 text-left text-lg text-gray-600 max-w-xl mx-auto">
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 text-[#d4a84b]">•</span>
+                <span><strong className="text-[#1a2744]">Professional DJs</strong> to keep the dance floor packed.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 text-[#d4a84b]">•</span>
+                <span><strong className="text-[#1a2744]">Karaoke Hosts</strong> to let your guests be the stars.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 text-[#d4a84b]">•</span>
+                <span><strong className="text-[#1a2744]">Trivia Nights</strong> for engaging, competitive fun.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 text-[#d4a84b]">•</span>
+                <span><strong className="text-[#1a2744]">Custom Entertainment</strong> tailored specifically to your event&apos;s needs.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
