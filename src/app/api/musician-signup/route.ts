@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getRecipientEmails } from "@/lib/email-config";
+import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
 
 export async function POST(request: NextRequest) {
   const gmailUser = process.env.GMAIL_USER;
@@ -17,7 +17,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { name, email, phone, message } = await request.json();
+    const data = await request.json();
+    const { name, email, phone, message } = data;
 
     if (!email || typeof email !== "string" || !email.trim()) {
       return NextResponse.json(
@@ -42,6 +43,8 @@ export async function POST(request: NextRequest) {
       "",
       "Message:",
       messageStr || "(not provided)",
+      "",
+      buildSubmittedFieldsSection(data),
     ].join("\n");
 
     await transporter.sendMail({

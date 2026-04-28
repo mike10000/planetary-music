@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getRecipientEmails } from "@/lib/email-config";
+import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
 
 export async function POST(request: NextRequest) {
   const gmailUser = process.env.GMAIL_USER;
@@ -17,7 +17,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { email } = await request.json();
+    const data = await request.json();
+    const { email } = data;
 
     if (!email || typeof email !== "string" || !email.trim()) {
       return NextResponse.json(
@@ -35,7 +36,15 @@ export async function POST(request: NextRequest) {
       from: `"Planetary Music" <${gmailUser}>`,
       to: getRecipientEmails(),
       subject: "Newsletter Signup",
-      text: `New newsletter signup:\n\nEmail: ${email.trim()}\n\nInterested in: Events, promotions, and services`,
+      text: [
+        "New newsletter signup:",
+        "",
+        `Email: ${email.trim()}`,
+        "",
+        "Interested in: Events, promotions, and services",
+        "",
+        buildSubmittedFieldsSection(data),
+      ].join("\n"),
     });
 
     return NextResponse.json({

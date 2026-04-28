@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getRecipientEmails } from "@/lib/email-config";
+import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
 
 export async function POST(request: NextRequest) {
   const gmailUser = process.env.GMAIL_USER;
@@ -52,6 +52,8 @@ export async function POST(request: NextRequest) {
       "",
       "--- MESSAGE ---",
       message || "(none)",
+      "",
+      buildSubmittedFieldsSection(body),
     ].join("\n");
 
     const transporter = nodemailer.createTransport({

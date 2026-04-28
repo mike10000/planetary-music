@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getRecipientEmails } from "@/lib/email-config";
+import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -24,6 +24,7 @@ function buildEmailBody(data: Record<string, unknown>): string {
     `Year Formed: ${get("yearFormed")}`,
     `Location: ${get("location")}`,
     `Members: ${get("memberCount")}`,
+    `Band Members & Roles: ${get("bandMembers")}`,
     `Band Bio: ${get("bandBio")}`,
     "",
     "--- ONLINE PRESENCE ---",
@@ -32,15 +33,26 @@ function buildEmailBody(data: Record<string, unknown>): string {
     `Instagram: ${get("instagram")}`,
     `Spotify: ${get("spotify")}`,
     `YouTube: ${get("youtube")}`,
+    `Other Links: ${get("otherLinks")}`,
+    "",
+    "--- ASSETS & MEDIA ---",
+    `Logo & Branding Assets: ${get("logoAssets")}`,
+    `High-Resolution Photos: ${get("photos")}`,
+    `Video Links: ${get("videoLinks")}`,
+    `Music Samples: ${get("musicSamples")}`,
+    `Press / Reviews: ${get("pressReviews")}`,
     "",
     "--- REQUIREMENTS ---",
     `Preferred Domain: ${get("preferredDomain")}`,
     `Desired Features: ${getArray("desiredFeatures")}`,
+    `Other Desired Features: ${get("desiredFeaturesText")}`,
     `Timeline: ${get("timeline")}`,
     `Budget: ${get("budgetRange")}`,
     "",
     "--- ADDITIONAL NOTES ---",
     get("additionalNotes") || "(none)",
+    "",
+    buildSubmittedFieldsSection(data),
   ].join("\n");
 }
 

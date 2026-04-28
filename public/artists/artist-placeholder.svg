@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Planetary Music artist placeholder</title>
+  <desc id="desc">Gold and navy abstract music placeholder image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1a2744"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="45%">
+      <stop offset="0" stop-color="#d4a84b" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#d4a84b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="600" cy="380" r="330" fill="url(#glow)"/>
+  <path d="M520 245v345a92 92 0 1 1-54-84V305l310-62v288a92 92 0 1 1-54-84V309z" fill="#d4a84b"/>
+  <text x="600" y="755" text-anchor="middle" fill="#fff7dd" font-family="Arial, sans-serif" font-size="54" font-weight="700">Planetary Music</text>
+</svg>

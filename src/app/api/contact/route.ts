@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getRecipientEmails } from "@/lib/email-config";
+import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>, formType: string): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -26,7 +26,12 @@ function buildEmailBody(data: Record<string, unknown>, formType: string): string
     );
   }
 
-  lines.push("--- MESSAGE ---", get("personNote") || "(none)");
+  lines.push(
+    "--- MESSAGE ---",
+    get("personNote") || "(none)",
+    "",
+    buildSubmittedFieldsSection(data),
+  );
 
   return lines.join("\n");
 }
