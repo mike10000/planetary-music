@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <h3 className="text-lg font-semibold text-[#d4a84b]">
-              Planetary Music
+              Planetary Music LLC
             </h3>
             <p className="mt-2 text-sm text-white/80">
               Making Music Around The World

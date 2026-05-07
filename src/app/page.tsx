@@ -35,6 +35,10 @@ export default function Home() {
             <ul className="mt-6 space-y-3 text-left text-lg text-gray-600 max-w-xl mx-auto">
               <li className="flex gap-3">
                 <span className="flex-shrink-0 text-[#d4a84b]">•</span>
+                <span><strong className="text-[#1a2744]">Acoustic &amp; Bands</strong> to set the mood for the night.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 text-[#d4a84b]">•</span>
                 <span><strong className="text-[#1a2744]">Professional DJs</strong> to keep the dance floor packed.</span>
               </li>
               <li className="flex gap-3">

@@ -5,6 +5,7 @@ export interface Artist {
   website?: string;
   videoUrl?: string;
   imageUrl: string;
+  imagePosition?: string;
   genres: string[];
 }
 
@@ -112,7 +113,17 @@ export const artists: Artist[] = [
     website: "https://marilynhucek.com",
     videoUrl: "https://www.youtube.com/embed/7kCr-SJhFIY",
     imageUrl: "/artists/marilyn-hucek.jpg",
+    imagePosition: "center top",
     genres: ["Acoustic", "Live Perfomance", "Top 40", "Pop", "Singer-Songwriter", "Rock", "Country", "Folk", "Latin"],
+  },
+  {
+    id: "annie-stokes",
+    name: "Annie Stokes",
+    description: "Annie Stokes is an award-winning singer-songwriter from just east of the Blue Ridge Mountains. Combining modern songwriting sensibilities with traditional folk sounds, she has been recognized regionally and nationally for her independently released albums and engaging live performances. She cowrites with her husband and bass player, Will Berger.",
+    website: "https://www.anniestokesmusic.com",
+    videoUrl: "https://www.youtube.com/embed/A86W5wW0ZdU",
+    imageUrl: "/artists/annie-stokes.jpg",
+    genres: ["Acoustic", "Americana", "Country"],
   },
   {
     id: "ashleigh-chevalier",
@@ -120,7 +131,7 @@ export const artists: Artist[] = [
     description: "A professionally trained vocalist with exceptional range and dynamic tonal control, Chevalier's ability to navigate between whisper-soft vulnerability and powerful emotional crescendos reflects the journey captured in her music. Her authenticity resonates with audiences across the Mid-Atlantic region and into the Caribbean, where she has established herself as a compelling performer on stages both intimate and grand. She performs a range of rock, country, and roots music that sets her in the heart of Americana Rock music",
     website: "https://instagram.com/ashleigh_chevalier",
     videoUrl: "https://www.youtube.com/embed/Y3-YigJnIjo",
-    imageUrl: "/artists/artist-placeholder.svg",
+    imageUrl: "/artists/ashleigh-chevalier.png",
     genres: ["Acoustic", "Americana", "Classic Rock", "Country", "Alt & Indie Rock"],
   },
 ];

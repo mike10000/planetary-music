@@ -8,6 +8,7 @@ export type Artist = {
   website?: string;
   videoUrl?: string;
   imageUrl: string;
+  imagePosition?: string;
   genres: string[];
 };
 
@@ -18,6 +19,7 @@ function dbToArtist(db: {
   website: string | null;
   video_url: string | null;
   image_url: string;
+  image_position?: string | null;
   genres: string[];
 }): Artist {
   return {
@@ -27,6 +29,7 @@ function dbToArtist(db: {
     website: db.website ?? undefined,
     videoUrl: db.video_url ?? undefined,
     imageUrl: db.image_url,
+    imagePosition: db.image_position ?? undefined,
     genres: db.genres ?? [],
   };
 }

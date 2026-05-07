@@ -63,6 +63,7 @@ export default function ArtistsSection({
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
+                      style={{ objectPosition: artist.imagePosition ?? "center" }}
                     />
                   </div>
                 </div>
@@ -122,44 +123,6 @@ export default function ArtistsSection({
           )}
         </div>
       </div>
-
-      {/* Video samples - from filtered artists */}
-      {filteredArtists.filter((a) => a.videoUrl).length > 0 && (
-        <section className="mt-20 bg-gray-50 py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-[#1a2744]">
-              Sample Performances
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
-              Get a taste of what our artists bring to the stage.
-            </p>
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
-              {filteredArtists
-                .filter((a) => a.videoUrl)
-                .slice(0, 2)
-                .map((artist) => (
-                  <div
-                    key={artist.id}
-                    className="rounded-xl bg-white p-4 shadow-sm"
-                  >
-                    <h3 className="font-semibold text-[#1a2744]">
-                      {artist.name}
-                    </h3>
-                    <div className="relative mt-4 aspect-video overflow-hidden rounded-lg">
-                      <iframe
-                        src={artist.videoUrl}
-                        title={`${artist.name} performance`}
-                        className="absolute inset-0 h-full w-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {bookingArtist && (
         <BookArtistModal

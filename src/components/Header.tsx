@@ -53,7 +53,7 @@ export default function Header() {
   const ctaButtons = (
     <>
       <Link href="/contact?type=venue" className={`${ctaButtonClass} bg-[#d4a84b] px-3 text-[#1a2744] shadow-lg shadow-[#d4a84b]/20 hover:bg-[#e5b95c] hover:shadow-[#d4a84b]/30 hover:scale-[1.02]`}>
-        For Venues
+        Hire Entertainment
       </Link>
       <Link href="/contact?type=musician" className={`${ctaButtonClass} border-2 border-[#2d2318] px-3 text-[#2d2318] hover:bg-[#2d2318]/5`}>
         For Musicians
@@ -93,6 +93,7 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
+          aria-label="Go to home page"
           className="flex items-center gap-2 transition-opacity hover:opacity-90"
           onClick={() => setMobileMenuOpen(false)}
         >
@@ -178,7 +179,7 @@ export default function Header() {
               className="rounded-full bg-[#d4a84b] px-4 py-3 text-center text-sm font-extrabold text-[#1a2744]"
               onClick={() => setMobileMenuOpen(false)}
             >
-              For Venues
+              Hire Entertainment
             </Link>
             <Link
               href="/contact?type=musician"
