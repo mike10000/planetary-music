@@ -6,10 +6,17 @@ import { useEffect, useRef, useState } from "react";
 export default function HeroSection() {
   const videoRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    // If the preloaded image is already in cache by hydration, the onLoad
+    // event never fires — check completion synchronously.
+    if (logoRef.current?.complete && logoRef.current.naturalWidth > 0) {
+      setLogoLoaded(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -37,6 +44,15 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-[85vh] overflow-hidden bg-[#1a2744] py-24 text-white"
     >
+      {/* Preload hero logo — React 19 hoists this into <head> so the browser
+          starts fetching it during HTML parsing, before hydration. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/hero-logo.png"
+        fetchPriority="high"
+      />
+
       {/* Parallax video - fixed so it stays while content scrolls over it */}
       <div
         ref={videoRef}
@@ -61,17 +77,21 @@ export default function HeroSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <div
-          className={`mx-auto max-w-2xl transition-all duration-700 [&_img]:mix-blend-lighten ${
-            mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          className={`mx-auto max-w-2xl transition-opacity duration-500 ease-out [&_img]:mix-blend-lighten ${
+            mounted && logoLoaded ? "opacity-100" : "opacity-0"
           }`}
           style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.35))" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            ref={logoRef}
             src="/hero-logo.png"
             alt="Planetary Music"
             width={640}
             height={200}
+            decoding="async"
+            fetchPriority="high"
+            onLoad={() => setLogoLoaded(true)}
             className="h-auto w-full object-contain"
             style={{ background: "transparent" }}
           />
