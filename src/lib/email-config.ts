@@ -5,6 +5,15 @@
  */
 const DEFAULT_RECIPIENT = "Info@MikeTintnerProductions.com";
 
+/** Starts notification subjects so they filter consistently in the inbox. */
+export const FORM_EMAIL_SUBJECT_PREFIX = "planetarymusic.com booking";
+
+export function formatFormEmailSubject(detail: string): string {
+  const d = detail.trim();
+  if (!d) return FORM_EMAIL_SUBJECT_PREFIX;
+  return `${FORM_EMAIL_SUBJECT_PREFIX} – ${d}`;
+}
+
 export function getRecipientEmails(): string[] {
   const env = process.env.FORM_RECIPIENT_EMAIL?.trim();
   if (env) {

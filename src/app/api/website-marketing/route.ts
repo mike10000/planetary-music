@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
+import {
+  buildSubmittedFieldsSection,
+  formatFormEmailSubject,
+  getRecipientEmails,
+} from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -89,7 +93,9 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const subject = `New Website & Marketing Request: ${(data.bandName || data.companyName || "Unknown")}`;
+    const subject = formatFormEmailSubject(
+      `New Website & Marketing Request: ${data.bandName || data.companyName || "Unknown"}`
+    );
     const body = buildEmailBody(data);
 
     const transporter = nodemailer.createTransport({

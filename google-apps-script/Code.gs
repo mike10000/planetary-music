@@ -125,7 +125,7 @@ function buildRow(data) {
 
 function sendEmailNotification(row, data) {
   const subject =
-    "New Website & Marketing Request: " +
+    "planetarymusic.com booking – New Website & Marketing Request: " +
     (data.bandName || data.companyName || "Unknown");
   const body = buildEmailBody(row, data);
 

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { buildSubmittedFieldsSection, getRecipientEmails } from "@/lib/email-config";
+import {
+  buildSubmittedFieldsSection,
+  formatFormEmailSubject,
+  getRecipientEmails,
+} from "@/lib/email-config";
 
 function buildEmailBody(data: Record<string, unknown>, formType: string): string {
   const get = (key: string) => (data[key] || "").toString().trim();
@@ -60,7 +64,9 @@ export async function POST(request: NextRequest) {
       dj: "DJ Booking",
       karaoke: "Karaoke/Trivia Booking",
     };
-    const subject = `Planetary Music: ${subjectMap[formType] || "Contact"} from ${(data.personName || "").toString().trim() || "Unknown"}`;
+    const subject = formatFormEmailSubject(
+      `Planetary Music: ${subjectMap[formType] || "Contact"} from ${(data.personName || "").toString().trim() || "Unknown"}`
+    );
     const body = buildEmailBody(data, formType);
 
     const transporter = nodemailer.createTransport({
