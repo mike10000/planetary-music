@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 export const runtime = "nodejs";
 export const alt =
-  "Planetary Music — Elevating Events Across the East Coast";
+  "Planetary Music — Making Music Around The World";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,13 +20,10 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1a2744",
-          color: "white",
+          background: "#fefcf8",
           position: "relative",
-          fontFamily: "serif",
         }}
       >
         <div
@@ -43,36 +40,20 @@ export default async function Image() {
         <img
           src={logo}
           alt=""
-          width={760}
-          height={300}
+          width={1040}
+          height={460}
           style={{ objectFit: "contain" }}
         />
         <div
           style={{
-            marginTop: 28,
-            fontSize: 38,
-            color: "#d4a84b",
-            fontStyle: "italic",
-          }}
-        >
-          Making Music Around The World
-        </div>
-        <div
-          style={{
-            marginTop: 12,
-            fontSize: 24,
-            opacity: 0.9,
-          }}
-        >
-          Elevating Events Across the East Coast
-        </div>
-        <div
-          style={{
             position: "absolute",
             bottom: 24,
-            right: 32,
-            fontSize: 20,
-            opacity: 0.7,
+            right: 36,
+            fontSize: 22,
+            color: "#1a2744",
+            opacity: 0.65,
+            fontFamily: "serif",
+            letterSpacing: 0.5,
           }}
         >
           planetarymusic.com
