@@ -134,4 +134,31 @@ export const artists: Artist[] = [
     imageUrl: "/artists/ashleigh-chevalier.png",
     genres: ["Acoustic", "Americana", "Classic Rock", "Country", "Alt & Indie Rock"],
   },
+  {
+    id: "jet-capriest",
+    name: "Jet Capriest",
+    description:
+      "Jet Capriest is a versatile singer, songwriter, and performer from Prince George's County, Maryland, known for blending soulful vocals, live musicianship, and genre-crossing creativity.",
+    website: "https://jetcapriest.com/jet-capriest.html",
+    imageUrl: "/artists/jet-capriest.png",
+    genres: ["Acoustic", "Classic Rock", "Country", "Motown", "R&B", "Top 40"],
+  },
+  {
+    id: "first-sunday",
+    name: "First Sunday",
+    description:
+      "First Sunday is a versatile live band collective known for blending soulful musicianship, high-energy performances, and fresh interpretations of songs across generations and genres.",
+    website: "https://firstsundaymusic.com",
+    imageUrl: "/artists/first-sunday.png",
+    genres: [
+      "Classic Rock",
+      "Country",
+      "Live Perfomance",
+      "Motown",
+      "Party Band",
+      "R&B",
+      "Soul",
+      "Top 40",
+    ],
+  },
 ];

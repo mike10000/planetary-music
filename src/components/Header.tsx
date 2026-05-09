@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
   const [scrollY, setScrollY] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
@@ -80,15 +78,11 @@ export default function Header() {
   return (
     <header
       className="sticky top-0 z-50 bg-[#fefcf8]/95 backdrop-blur-md transition-all duration-500"
-      style={
-        mounted
-          ? {
-              boxShadow: scrolled
-                ? "0 4px 20px rgba(45,35,24,0.06), 0 0 0 1px rgba(45,35,24,0.04)"
-                : "0 1px 0 rgba(45,35,24,0.04)",
-            }
-          : undefined
-      }
+      style={{
+        boxShadow: scrolled
+          ? "0 4px 20px rgba(45,35,24,0.06), 0 0 0 1px rgba(45,35,24,0.04)"
+          : "0 1px 0 rgba(45,35,24,0.04)",
+      }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link

@@ -17,10 +17,11 @@ export default function BookArtistModal({
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpen) return;
+    queueMicrotask(() => {
       setStatus("idle");
       setErrorMessage("");
-    }
+    });
   }, [isOpen]);
 
   useEffect(() => {

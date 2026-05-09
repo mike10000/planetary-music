@@ -11,12 +11,14 @@ export default function HeroSection() {
   const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    // If the preloaded image is already in cache by hydration, the onLoad
-    // event never fires — check completion synchronously.
-    if (logoRef.current?.complete && logoRef.current.naturalWidth > 0) {
-      setLogoLoaded(true);
-    }
+    queueMicrotask(() => {
+      setMounted(true);
+      // If the preloaded image is already in cache by hydration, the onLoad
+      // event never fires — check completion synchronously.
+      if (logoRef.current?.complete && logoRef.current.naturalWidth > 0) {
+        setLogoLoaded(true);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function HeroSection() {
     updateParallax();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [mounted]);
+  }, []);
 
   return (
     <section
