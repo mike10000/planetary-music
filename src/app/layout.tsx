@@ -20,10 +20,33 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://planetarymusic.com";
+
+const SITE_DESCRIPTION =
+  "Premier full-service booking and entertainment agency. Exceptional live bands, DJ services, karaoke, trivia, and bespoke performances for events of all scales.";
+
 export const metadata: Metadata = {
-  title: "Planetary Music | Elevating Events Across the East Coast",
-  description:
-    "Premier full-service booking and entertainment agency. Exceptional live bands, DJ services, karaoke, trivia, and bespoke performances for events of all scales.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Planetary Music | Elevating Events Across the East Coast",
+    template: "%s | Planetary Music",
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: "Planetary Music",
+  openGraph: {
+    type: "website",
+    siteName: "Planetary Music",
+    url: SITE_URL,
+    title: "Planetary Music | Elevating Events Across the East Coast",
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Planetary Music | Elevating Events Across the East Coast",
+    description: SITE_DESCRIPTION,
+  },
   icons: {
     icon: "/favicon.png",
   },
