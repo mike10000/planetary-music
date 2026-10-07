@@ -1,7 +1,7 @@
 /**
  * Shared email configuration for all form submissions.
- * Override FORM_RECIPIENT_EMAIL in .env.local to change recipient(s).
- * Use comma-separated addresses for multiple: email1@x.com,email2@x.com
+ * Recipients come from FORM_RECIPIENT_EMAIL (comma-separated).
+ * The defaults below match .env.example when that variable is unset.
  */
 const DEFAULT_RECIPIENTS = [
   "dave@planetaryband.com",
