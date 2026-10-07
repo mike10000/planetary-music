@@ -18,7 +18,7 @@ This script receives form submissions from the Websites & Marketing form, writes
 2. Delete any default code and paste the contents of `Code.gs`.
 3. Edit `CONFIG.NOTIFY_EMAILS` to add more recipients:
    ```javascript
-   NOTIFY_EMAILS: ["info@miketintnerproductions.com", "another@email.com"],
+   NOTIFY_EMAILS: ["dave@planetaryband.com", "info@miketintnerproductions.com"],
    ```
 
 ### 3. Deploy as Web App
