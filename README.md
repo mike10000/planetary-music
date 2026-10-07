@@ -25,9 +25,10 @@ A Next.js website for Planetary Music, a premier booking and entertainment agenc
 
 3. **Environment variables**
    - Copy `.env.example` to `.env.local`
-   - Set `GMAIL_USER` to your Gmail address (e.g. your-email@gmail.com)
-   - Set `GMAIL_APP_PASSWORD` to a [Gmail App Password](https://myaccount.google.com/apppasswords) (not your regular password)
-   - Optional: Set `FORM_RECIPIENT_EMAIL` to override where form emails go (default: info@miketintnerproductions.com). Use comma-separated addresses for multiple recipients.
+   - In [Resend](https://resend.com), verify the `planetarymusic.com` domain (add the DNS records it shows)
+   - Set `RESEND_API_KEY` to a Resend API key with sending access
+   - Set `FORM_FROM_EMAIL` to a sender on the verified domain (e.g. `Planetary Music <forms@planetarymusic.com>`)
+   - Optional: Set `FORM_RECIPIENT_EMAIL` to override where form emails go (default: dave@planetaryband.com and info@miketintnerproductions.com). Use comma-separated addresses for multiple recipients.
 
 4. **Run locally**
    ```bash
@@ -36,7 +37,7 @@ A Next.js website for Planetary Music, a premier booking and entertainment agenc
 
 5. **Deploy to Vercel**
    - Connect your repo to Vercel
-   - Add `GMAIL_USER` and `GMAIL_APP_PASSWORD` in Vercel project settings → Environment Variables
+   - Add `RESEND_API_KEY` and `FORM_FROM_EMAIL` in Vercel project settings → Environment Variables
 
 ## Customization
 

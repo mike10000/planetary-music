@@ -1,20 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import {
   buildSubmittedFieldsSection,
   formatFormEmailSubject,
-  getRecipientEmails,
 } from "@/lib/email-config";
+import { isEmailConfigured, sendFormEmail } from "@/lib/send-form-email";
 
 export async function POST(request: NextRequest) {
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
-
-  if (!gmailUser || !gmailAppPassword) {
+  if (!isEmailConfigured()) {
     return NextResponse.json(
       {
         success: false,
-        errors: ["Form is not configured. Please add GMAIL_USER and GMAIL_APP_PASSWORD."],
+        errors: ["Form is not configured. Please add RESEND_API_KEY and FORM_FROM_EMAIL."],
       },
       { status: 500 }
     );
@@ -31,11 +27,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user: gmailUser, pass: gmailAppPassword },
-    });
-
     const nameStr = name && typeof name === "string" ? name.trim() : "";
     const phoneStr = phone && typeof phone === "string" ? phone.trim() : "";
     const messageStr = message && typeof message === "string" ? message.trim() : "";
@@ -51,11 +42,10 @@ export async function POST(request: NextRequest) {
       buildSubmittedFieldsSection(data),
     ].join("\n");
 
-    await transporter.sendMail({
-      from: `"Planetary Music" <${gmailUser}>`,
-      to: getRecipientEmails(),
+    await sendFormEmail({
       subject: formatFormEmailSubject("Musician Signup"),
       text: `New musician signup:\n\n${body}`,
+      replyTo: email,
     });
 
     return NextResponse.json({

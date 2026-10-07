@@ -6,7 +6,7 @@
  */
 
 const CONFIG = {
-  NOTIFY_EMAILS: ["info@miketintnerproductions.com"],
+  NOTIFY_EMAILS: ["dave@planetaryband.com", "info@miketintnerproductions.com"],
   SHEET_NAME: "Responses",
 };
 

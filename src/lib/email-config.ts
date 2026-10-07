@@ -3,7 +3,10 @@
  * Override FORM_RECIPIENT_EMAIL in .env.local to change recipient(s).
  * Use comma-separated addresses for multiple: email1@x.com,email2@x.com
  */
-const DEFAULT_RECIPIENT = "Info@MikeTintnerProductions.com";
+const DEFAULT_RECIPIENTS = [
+  "dave@planetaryband.com",
+  "info@miketintnerproductions.com",
+];
 
 /** Starts notification subjects so they filter consistently in the inbox. */
 export const FORM_EMAIL_SUBJECT_PREFIX = "planetarymusic.com booking";
@@ -19,7 +22,7 @@ export function getRecipientEmails(): string[] {
   if (env) {
     return env.split(",").map((e) => e.trim()).filter(Boolean);
   }
-  return [DEFAULT_RECIPIENT];
+  return [...DEFAULT_RECIPIENTS];
 }
 
 function formatValue(value: unknown): string {
